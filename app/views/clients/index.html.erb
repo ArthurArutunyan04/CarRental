@@ -1,0 +1,42 @@
+<nav>
+  <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+  <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+  <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+  <a class="nav_button" href="<%= rents_path %>">Аренды</a>
+</nav>
+
+<div class="back">
+  <div class="back_inside">
+
+    <h1>Клиенты</h1>
+
+    <%= link_to 'Создать нового клиента', new_client_path, class: 'btn btn-primary' %>
+
+    <table class="client-table">
+      <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Адрес</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= client.name %></td>
+          <td><%= client.email %></td>
+          <td><%= client.phone_number %></td>
+          <td><%= client.address %></td>
+          <td class="action-links">
+            <%= link_to 'Показать', client_path(client), class: 'btn' %> |
+            <%= link_to 'Редактировать', edit_client_path(client), class: 'btn' %> |
+            <%= link_to 'Удалить', client_path(client), class: 'btn btn-danger', data: { turbo_method: :delete, confirm: 'Вы уверены, что хотите удалить это?' } %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

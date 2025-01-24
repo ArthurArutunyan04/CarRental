@@ -1,0 +1,17 @@
+<nav>
+    <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+    <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+    <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+    <a class="nav_button"  href="<%= rents_path %>">Аренды</a>
+</nav>
+<div class = "back">
+  <div class = "back_inside">
+
+    <h1>Добро пожаловать на главную страницу!</h1>
+
+    <p class = "p1">На сайте доступно управление следующими разделами:</p>
+      <a class = "a1" href="<%= clients_path %>">Клиенты </a>
+      <a class = "a1" href="<%= cars_path %>">Автомобили </a>
+      <a class = "a1" href="<%= rents_path %>">Аренды </a>
+  </div>
+</div>

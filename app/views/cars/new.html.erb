@@ -1,0 +1,52 @@
+<nav>
+  <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+  <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+  <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+  <a class="nav_button" href="<%= rents_path %>">Аренды</a>
+</nav>
+
+<div class="back">
+  <div class="back_inside">
+
+    <h1>Добавить новый автомобиль</h1>
+
+    <%= form_with model: @car, local: true do |form| %>
+      <% if @car.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@car.errors.count, "error") %> запретили сохранить автомобиль:</h2>
+          <ul>
+            <% @car.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :brand, class: 'form-label' %>
+        <%= form.text_field :brand, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :model, class: 'form-label' %>
+        <%= form.text_field :model, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :release_year, class: 'form-label' %>
+        <%= form.number_field :release_year, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :price_per_day, class: 'form-label' %>
+        <%= form.number_field :price_per_day, step: 0.01, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit 'Добавить автомобиль', class: 'submit-btn' %>
+      </div>
+    <% end %>
+
+    <%= link_to 'Назад', cars_path, class: 'back-link' %>
+  </div>
+</div>

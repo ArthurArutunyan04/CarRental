@@ -1,0 +1,44 @@
+<nav>
+  <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+  <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+  <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+  <a class="nav_button" href="<%= rents_path %>">Аренды</a>
+</nav>
+
+<div class="back">
+  <div class="back_inside">
+
+    <h1>Аренды</h1>
+
+    <%= link_to 'Добавить новую аренду', new_rent_path, class: 'btn btn-primary' %>
+
+    <table class="client-table">
+      <thead>
+      <tr>
+        <th>Клиент</th>
+        <th>Автомобиль</th>
+        <th>Дата аренды</th>
+        <th>Дата возврата</th>
+        <th>Стоимость аренды</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @rents.each do |rent| %>
+        <tr>
+          <td><%= rent.client.name %></td>
+          <td><%= rent.car.brand %> <%= rent.car.model %></td>
+          <td><%= rent.rental_date %></td>
+          <td><%= rent.return_date %></td>
+          <td><%= rent.rental_cost %> ₽</td>
+          <td class="action-links">
+            <%= link_to 'Показать', rent_path(rent), class: 'btn' %> |
+            <%= link_to 'Редактировать', edit_rent_path(rent), class: 'btn' %> |
+            <%= link_to 'Удалить', rent_path(rent), data: { turbo_method: :delete, confirm: 'Вы уверены, что хотите удалить эту аренду?' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

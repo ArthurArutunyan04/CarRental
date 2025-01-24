@@ -1,0 +1,25 @@
+<nav>
+  <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+  <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+  <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+  <a class="nav_button" href="<%= rents_path %>">Аренды</a>
+</nav>
+
+<div class="back">
+  <div class="back_inside">
+
+    <h1>Аренда: <%= @rent.client.name %> - <%= @rent.car.brand %> <%= @rent.car.model %></h1>
+
+    <div class="rent-details">
+      <p><strong>Дата аренды:</strong> <%= @rent.rental_date %></p>
+      <p><strong>Дата возврата:</strong> <%= @rent.return_date %></p>
+      <p><strong>Стоимость аренды:</strong> <%= @rent.rental_cost %> руб.</p>
+    </div>
+
+    <div class="action-links">
+      <%= link_to 'Редактировать', edit_rent_path(@rent), class: 'btn' %> |
+      <%= link_to 'Назад', rents_path, class: 'back-link' %>
+    </div>
+
+  </div>
+</div>

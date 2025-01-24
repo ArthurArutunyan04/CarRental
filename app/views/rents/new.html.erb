@@ -1,0 +1,57 @@
+<nav>
+  <%= link_to 'Главная страница', root_path, class: 'nav_button' %>
+  <a class="nav_button" href="<%= cars_path %>">Автомобили</a>
+  <a class="nav_button" href="<%= clients_path %>">Клиенты</a>
+  <a class="nav_button" href="<%= rents_path %>">Аренды</a>
+</nav>
+
+<div class="back">
+  <div class="back_inside">
+
+    <h1>Новая аренда</h1>
+
+    <%= form_with model: @rent, local: true do |form| %>
+      <% if @rent.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rent.errors.count, "error") %> запретили сохранить аренду:</h2>
+          <ul>
+            <% @rent.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :rental_date, class: 'form-label' %>
+        <%= form.date_field :rental_date, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :return_date, class: 'form-label' %>
+        <%= form.date_field :return_date, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :client_id, class: 'form-label' %>
+        <%= form.collection_select :client_id, Client.all, :id, :name, { prompt: 'Выберите клиента' }, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :car_id, class: 'form-label' %>
+        <%= form.collection_select :car_id, Car.all, :id, :brand, { prompt: 'Выберите автомобиль' }, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :rental_cost, class: 'form-label' %>
+        <%= form.number_field :rental_cost, step: 0.01, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit 'Создать аренду', class: 'submit-btn' %>
+      </div>
+    <% end %>
+
+    <%= link_to 'Назад', rents_path, class: 'back-link' %>
+  </div>
+</div>
